@@ -2,12 +2,24 @@
 
 MicTrigger turns the DJI Mic Mini transmitter’s link/shutter button into configurable macOS shortcuts. It lives only in the menu bar and is designed around one short setup: install, grant two permissions, plug in the receiver, and press the button.
 
+## Download
+
+Download the latest versioned `MicTrigger-*.dmg` from [GitHub Releases](https://github.com/josh-vincent/dji-mic-mini/releases/latest), open it, and drag **MicTrigger** onto **Applications**.
+
+The current preview build is signed with an Apple Development certificate but is not notarized for public distribution. On another Mac, macOS may require you to Control-click MicTrigger in Applications, choose **Open**, and confirm once. A warning-free double-click install requires a Developer ID Application certificate and Apple notarization.
+
 ## Install
 
 Requires macOS 14 or later and Apple’s Command Line Tools/Xcode for this source build.
 
 ```sh
 ./install.sh
+```
+
+To create the distributable disk image locally:
+
+```sh
+./scripts/create-dmg.sh
 ```
 
 Then click the microphone icon in the menu bar and choose **Enable MicTrigger**. macOS requires you to approve:
@@ -64,6 +76,7 @@ iOS can use the Mic Mini button as a camera shutter in compatible foreground app
 swift test
 swift run MicTrigger
 ./scripts/build-app.sh
+./scripts/create-dmg.sh
 ```
 
-The source build is ad-hoc signed. A public one-click download should be signed with a Developer ID certificate and notarized before distribution.
+The build script prefers a Developer ID or Apple Development signing identity from your keychain and otherwise falls back to ad-hoc signing. A warning-free public download must be signed with a Developer ID Application certificate and notarized before distribution.
